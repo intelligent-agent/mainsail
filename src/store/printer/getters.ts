@@ -15,6 +15,7 @@ import {
     PrinterStateHeater,
     PrinterStateTemperatureFan,
     PrinterStateMiscellaneous,
+    PrinterStateRecore,
     PrinterStateMcu,
     PrinterStateMacro,
     PrinterStateTemperatureObject,
@@ -644,6 +645,22 @@ export const getters: GetterTree<PrinterState, RootState> = {
 
             return 0
         })
+    },
+
+    getRecore: (state, getters) => {
+        const output: PrinterStateRecore[] = []
+        const objects = getters.getPrinterObjects(['recore_state'])
+        output.push({
+            name: "SSH Access enabled",
+            type: "ssh",
+            value: objects[0].state.ssh_enabled
+        })
+        output.push({
+            name: "Boot from eMMC",
+            type: "media",
+            value: objects[0].state.boot_media
+        })
+        return output
     },
 
     getAdditionalSensors: (state, getters, rootState, rootGetters) => (name: string) => {

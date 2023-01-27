@@ -589,6 +589,9 @@
                 "Empty": "Empty"
             }
         },
+        "RecorePanel": {
+            "Headline": "Recore"
+        },
         "PowerControlPanel": {
             "Error": "Error",
             "Off": "Off",

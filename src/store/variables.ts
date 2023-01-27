@@ -79,6 +79,7 @@ export const allDashboardPanels = [
     'miscellaneous',
     'temperature',
     'webcam',
+    'recore',
 ]
 
 export const thumbnailSmallMin = 32

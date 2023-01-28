@@ -101,6 +101,7 @@ export const getDefaultState = (): GuiState => {
             widescreenLayout2: [
                 { name: 'temperature', visible: true },
                 { name: 'machine-settings', visible: true },
+                { name: 'recore', visible: true },
             ],
             widescreenLayout3: [
                 { name: 'webcam', visible: true },

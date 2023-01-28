@@ -65,7 +65,7 @@ export const mutations: MutationTree<PrinterState> = {
 
     setRecoreSshEnabled(state, is_enabled){
       Vue.set(state, 'recore_state', {
-        'ssh_enabled': is_enabled,
+        'ssh_enabled': is_enabled == "true" ? "yes" : "no",
         'boot_media': state.recore_state.boot_media
       })
     },

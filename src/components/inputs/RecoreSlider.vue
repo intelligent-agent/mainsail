@@ -41,7 +41,7 @@ export default class RecoreSlider extends Mixins(BaseMixin) {
 
     get value(): string {
         if(this.type == "ssh")
-          return this.initialValue == "true" ? 1 : 0
+          return this.initialValue == "yes" ? 1 : 0
         else
           return this.initialValue == "emmc" ? 1 : 0
     }

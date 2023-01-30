@@ -17,10 +17,7 @@
 <script lang="ts">
 import { Component, Mixins, Prop } from 'vue-property-decorator'
 import BaseMixin from '@/components/mixins/base'
-import {
-    mdiToggleSwitch,
-    mdiToggleSwitchOffOutline,
-} from '@mdi/js'
+import { mdiToggleSwitch, mdiToggleSwitchOffOutline } from '@mdi/js'
 
 @Component
 export default class RecoreSlider extends Mixins(BaseMixin) {
@@ -37,14 +34,12 @@ export default class RecoreSlider extends Mixins(BaseMixin) {
     declare initialValue: string
 
     get value(): string {
-        if(this.type == "ssh")
-          return this.initialValue == "yes" ? 1 : 0
-        else
-          return this.initialValue == "emmc" ? 1 : 0
+        if (this.type == 'ssh') return this.initialValue == 'yes' ? 1 : 0
+        else return this.initialValue == 'emmc' ? 1 : 0
     }
     switchOutputPin(): void {
-        const newVal = this.type == "ssh" ? (this.value ? "false" : "true") : (this.value ? "usb" : "emmc")
-        const cmd = this.type == "ssh" ? 'recore.enable_ssh' : 'recore.set_boot_media'
+        const newVal = this.type == 'ssh' ? (this.value ? 'false' : 'true') : this.value ? 'usb' : 'emmc'
+        const cmd = this.type == 'ssh' ? 'recore.enable_ssh' : 'recore.set_boot_media'
         this.$socket.emit(cmd, { type: this.type, value: newVal }, { action: 'printer/updateRecoreState' })
     }
 }

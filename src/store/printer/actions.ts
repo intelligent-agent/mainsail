@@ -152,12 +152,9 @@ export const actions: ActionTree<PrinterState, RootState> = {
     },
 
     updateRecoreState({ commit, dispatch }, payload) {
-        if(payload.result == "ok"){
-          if(payload.requestParams.type == "ssh")
-            commit('setRecoreSshEnabled', payload.requestParams.value)
-          else if(payload.requestParams.type == "media")
-            commit('setRecoreBootMedia', payload.requestParams.value)
+        if (payload.result == 'ok') {
+            if (payload.requestParams.type == 'ssh') commit('setRecoreSshEnabled', payload.requestParams.value)
+            else if (payload.requestParams.type == 'media') commit('setRecoreBootMedia', payload.requestParams.value)
         }
     },
-
 }

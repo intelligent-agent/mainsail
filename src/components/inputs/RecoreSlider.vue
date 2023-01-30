@@ -15,7 +15,6 @@
 </template>
 
 <script lang="ts">
-import { convertName } from '@/plugins/helpers'
 import { Component, Mixins, Prop } from 'vue-property-decorator'
 import BaseMixin from '@/components/mixins/base'
 import {
@@ -28,12 +27,10 @@ export default class RecoreSlider extends Mixins(BaseMixin) {
     mdiToggleSwitch = mdiToggleSwitch
     mdiToggleSwitchOffOutline = mdiToggleSwitchOffOutline
 
-    convertName = convertName
-
-    @Prop({ type: String, default: '' })
+    @Prop({ type: String, required: true })
     declare name: string
 
-    @Prop({ type: String, default: '' })
+    @Prop({ type: String, required: true })
     declare type: string
 
     @Prop({ type: String, required: true })
@@ -57,5 +54,4 @@ export default class RecoreSlider extends Mixins(BaseMixin) {
 ._fan-slider-subheader {
     height: auto;
 }
-
 </style>

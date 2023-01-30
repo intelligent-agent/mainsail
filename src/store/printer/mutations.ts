@@ -70,17 +70,17 @@ export const mutations: MutationTree<PrinterState> = {
       })
     },
 
-    setRecoreBootMedia(state, boot_media){
-      Vue.set(state, 'recore_state', {
-        'ssh_enabled': state.recore_state.ssh_enabled,
-        'boot_media': boot_media
-      })
+    setRecoreBootMedia(state, boot_media) {
+        Vue.set(state, 'recore_state', {
+            ssh_enabled: state.recore_state.ssh_enabled,
+            boot_media: boot_media,
+        })
     },
 
     setRecoreState(state, payload) {
         Vue.set(state, 'recore_state', {
-          'ssh_enabled': payload.ssh_enabled,
-          'boot_media': payload.boot_media
+            ssh_enabled: payload.ssh_enabled,
+            boot_media: payload.boot_media,
         })
     },
 }

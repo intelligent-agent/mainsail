@@ -1,5 +1,6 @@
 <template>
-    <v-container class="px-0 py-2">
+    <v-container
+        class="px-0 py-2">
         <v-row>
             <v-col :class="'pb-3'">
                 <v-subheader class="_fan-slider-subheader">
@@ -34,9 +35,17 @@ export default class RecoreSlider extends Mixins(BaseMixin) {
     declare initialValue: string
 
     get value(): string {
-        if (this.type == 'ssh') return this.initialValue == 'yes' ? 1 : 0
-        else return this.initialValue == 'emmc' ? 1 : 0
+        if (this.type == 'ssh'){
+          return this.initialValue == 'yes' ? 1 : 0
+        }
+        else if (this.type == 'media'){
+          return this.initialValue == 'emmc' ? 1 : 0
+        }
+        else {
+          console.log("Unknown type: "+this.type)
+        }
     }
+
     switchOutputPin(): void {
         const newVal = this.type == 'ssh' ? (this.value ? 'false' : 'true') : this.value ? 'usb' : 'emmc'
         const cmd = this.type == 'ssh' ? 'recore.enable_ssh' : 'recore.set_boot_media'

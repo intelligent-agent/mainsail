@@ -1,6 +1,5 @@
 <template>
     <panel
-        v-if="socketIsConnected && klipperState !== 'disconnected'"
         :icon="mdiCubeOutline"
         :title="$t('Panels.RecorePanel.Headline')"
         :collapsible="true"

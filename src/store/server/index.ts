@@ -40,16 +40,8 @@ export const getDefaultState = (): ServerState => {
         websocket_count: 0,
         moonraker_version: '',
         recore_state: {
-          ssh_enabled: {
-            name: 'ssh',
-            type: 'ssh',
-            value: 'yes'
-          },
-          boot_media: {
-            name: 'boot',
-            type: 'media',
-            value: "emmc"
-          }
+          ssh_enabled: 'no',
+          boot_media: 'emmc',
         },
     }
 }

@@ -62,8 +62,8 @@ export interface ServerState {
     history?: ServerHistoryState
     timelapse?: ServerTimelapseState
     recore_state: {
-      ssh_enabled: ServerStateRecore,
-      boot_media: ServerStateRecore
+        ssh_enabled: string
+        boot_media: string
     }
 }
 
@@ -142,10 +142,4 @@ export interface ServerStateNetworkInterface {
     rx_bytes: number
     tx_bytes: number
     details?: ServerStateNetwork
-}
-
-export interface ServerStateRecore {
-    name: string
-    type: 'ssh' | 'media'
-    value: string
 }

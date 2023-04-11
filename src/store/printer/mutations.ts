@@ -59,4 +59,8 @@ export const mutations: MutationTree<PrinterState> = {
         }
     },
 
+    clearScrewsTiltAdjust(state) {
+        Vue.set(state.screws_tilt_adjust, 'error', false)
+        Vue.set(state.screws_tilt_adjust, 'results', {})
+    },
 }

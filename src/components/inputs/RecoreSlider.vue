@@ -1,6 +1,5 @@
 <template>
-    <v-container
-        class="px-0 py-2">
+    <v-container class="px-0 py-2">
         <v-row>
             <v-col :class="'pb-3'">
                 <v-subheader class="_recore-slider-subheader">
@@ -32,18 +31,15 @@ export default class RecoreSlider extends Mixins(BaseMixin) {
     declare type: string
 
     @Prop({ type: String, required: true })
-    declare initialValue: string
+    declare initial_value: string
 
     get value(): string {
-        if (this.type == 'ssh'){
-          return this.initialValue == 'yes' ? 1 : 0
+        if (this.type == 'ssh') {
+            return this.initial_value == 'yes' ? 1 : 0
+        } else if (this.type == 'media') {
+            return this.initial_value == 'emmc' ? 1 : 0
         }
-        else if (this.type == 'media'){
-          return this.initialValue == 'emmc' ? 1 : 0
-        }
-        else {
-          console.log("Unknown type: "+this.type)
-        }
+        return 'Unknown'
     }
 
     switchOutputPin(): void {

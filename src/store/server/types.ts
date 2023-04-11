@@ -62,8 +62,8 @@ export interface ServerState {
     history?: ServerHistoryState
     timelapse?: ServerTimelapseState
     recore_state: {
-      ssh_enabled: string,
-      boot_media: string
+        ssh_enabled: string
+        boot_media: string
     }
 }
 

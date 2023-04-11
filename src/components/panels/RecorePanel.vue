@@ -7,7 +7,7 @@
         card-class="miscellaneous-panel">
         <div v-for="(object, index) of recore" :key="index">
             <v-divider v-if="index"></v-divider>
-            <recore-slider :name="object.name" :type="object.type" :initialValue="object.value"></recore-slider>
+            <recore-slider :name="object.name" :type="object.type" :initial_value="object.value"></recore-slider>
         </div>
     </panel>
 </template>

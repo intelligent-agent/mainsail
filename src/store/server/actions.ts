@@ -299,14 +299,13 @@ export const actions: ActionTree<ServerState, RootState> = {
         dispatch('socket/removeInitModule', 'server/recoreState', { root: true })
     },
 
-    updateRecoreState({ commit, dispatch }, payload) {
+    updateRecoreState({ commit }, payload) {
         if (payload.result == 'ok') {
-            if (payload.requestParams.type == 'ssh'){
-              commit('setRecoreSshEnabled', payload.requestParams.value)
-            }
-            else if (payload.requestParams.type == 'media'){
-              commit('setRecoreBootMedia', payload.requestParams.value)
+            if (payload.requestParams.type == 'ssh') {
+                commit('setRecoreSshEnabled', payload.requestParams.value)
+            } else if (payload.requestParams.type == 'media') {
+                commit('setRecoreBootMedia', payload.requestParams.value)
             }
         }
-    }
+    },
 }

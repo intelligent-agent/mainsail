@@ -19,13 +19,11 @@ export const actions: ActionTree<PrinterState, RootState> = {
         dispatch('socket/addInitModule', 'printer/initHelpList', { root: true })
         dispatch('socket/addInitModule', 'printer/initTempHistory', { root: true })
         dispatch('socket/addInitModule', 'server/gcode_store', { root: true })
-        dispatch('socket/addInitModule', 'printer/recoreState', { root: true })
 
         Vue.$socket.emit('printer.info', {}, { action: 'printer/getInfo' })
         Vue.$socket.emit('printer.objects.list', {}, { action: 'printer/initSubscripts' })
         Vue.$socket.emit('printer.gcode.help', {}, { action: 'printer/initHelpList' })
         Vue.$socket.emit('server.gcode_store', {}, { action: 'server/getGcodeStore' })
-        Vue.$socket.emit('recore.state', {}, { action: 'printer/initRecoreState' })
     },
 
     getInfo({ commit, dispatch }, payload) {
@@ -143,18 +141,6 @@ export const actions: ActionTree<PrinterState, RootState> = {
             Vue.$socket.emit('printer.emergency_stop', {}, { loading: 'sendGcode' })
         } else {
             Vue.$socket.emit('printer.gcode.script', { script: payload }, { loading: 'sendGcode' })
-        }
-    },
-
-    initRecoreState({ commit, dispatch }, payload) {
-        commit('setRecoreState', payload.recore_state)
-        dispatch('socket/removeInitModule', 'printer/recoreState', { root: true })
-    },
-
-    updateRecoreState({ commit, dispatch }, payload) {
-        if (payload.result == 'ok') {
-            if (payload.requestParams.type == 'ssh') commit('setRecoreSshEnabled', payload.requestParams.value)
-            else if (payload.requestParams.type == 'media') commit('setRecoreBootMedia', payload.requestParams.value)
         }
     },
 }

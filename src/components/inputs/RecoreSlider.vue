@@ -3,7 +3,7 @@
         class="px-0 py-2">
         <v-row>
             <v-col :class="'pb-3'">
-                <v-subheader class="_fan-slider-subheader">
+                <v-subheader class="_recore-slider-subheader">
                     <span>{{ name }}</span>
                     <v-spacer></v-spacer>
                     <v-icon @click="switchOutputPin">
@@ -49,13 +49,13 @@ export default class RecoreSlider extends Mixins(BaseMixin) {
     switchOutputPin(): void {
         const newVal = this.type == 'ssh' ? (this.value ? 'false' : 'true') : this.value ? 'usb' : 'emmc'
         const cmd = this.type == 'ssh' ? 'recore.enable_ssh' : 'recore.set_boot_media'
-        this.$socket.emit(cmd, { type: this.type, value: newVal }, { action: 'printer/updateRecoreState' })
+        this.$socket.emit(cmd, { type: this.type, value: newVal }, { action: 'server/updateRecoreState' })
     }
 }
 </script>
 
 <style scoped>
-._fan-slider-subheader {
+._recore-slider-subheader {
     height: auto;
 }
 </style>

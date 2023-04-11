@@ -24,6 +24,7 @@ export const actions: ActionTree<ServerState, RootState> = {
         dispatch('socket/addInitModule', 'server/systemInfo', { root: true })
         dispatch('socket/addInitModule', 'server/procStats', { root: true })
         dispatch('socket/addInitModule', 'server/databaseList', { root: true })
+        dispatch('socket/addInitModule', 'server/recoreState', { root: true })
 
         dispatch('identify')
         Vue.$socket.emit('server.info', {}, { action: 'server/initServerInfo' })
@@ -31,6 +32,7 @@ export const actions: ActionTree<ServerState, RootState> = {
         Vue.$socket.emit('machine.system_info', {}, { action: 'server/initSystemInfo' })
         Vue.$socket.emit('machine.proc_stats', {}, { action: 'server/initProcStats' })
         Vue.$socket.emit('server.database.list', { root: 'config' }, { action: 'server/checkDatabases' })
+        Vue.$socket.emit('recore.state', {}, { action: 'server/initRecoreState' })
 
         await dispatch('socket/removeInitModule', 'server', { root: true })
     },
@@ -291,4 +293,20 @@ export const actions: ActionTree<ServerState, RootState> = {
     serviceStateChanged({ commit }, payload) {
         commit('updateServiceState', payload)
     },
+
+    initRecoreState({ commit, dispatch }, payload) {
+        commit('setRecoreState', payload.recore_state)
+        dispatch('socket/removeInitModule', 'server/recoreState', { root: true })
+    },
+
+    updateRecoreState({ commit, dispatch }, payload) {
+        if (payload.result == 'ok') {
+            if (payload.requestParams.type == 'ssh'){
+              commit('setRecoreSshEnabled', payload.requestParams.value)
+            }
+            else if (payload.requestParams.type == 'media'){
+              commit('setRecoreBootMedia', payload.requestParams.value)
+            }
+        }
+    }
 }

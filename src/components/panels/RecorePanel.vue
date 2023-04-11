@@ -1,5 +1,6 @@
 <template>
     <panel
+        v-if="socketIsConnected && klipperState !== 'disconnected'"
         :icon="mdiCubeOutline"
         :title="$t('Panels.RecorePanel.Headline')"
         :collapsible="true"
@@ -23,7 +24,7 @@ export default class RecorePanel extends Mixins(BaseMixin) {
     mdiCubeOutline = mdiCubeOutline
 
     get recore() {
-        return this.$store.getters['printer/getRecore'] ?? []
+        return this.$store.getters['server/getRecore'] ?? []
     }
 }
 </script>

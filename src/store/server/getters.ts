@@ -31,6 +31,21 @@ export const getters: GetterTree<ServerState, any> = {
             return reverse ? events.reverse() : events
         },
 
+    getRecore: (state) => {
+        const output = []
+        output.push({
+            name: 'SSH Access enabled',
+            type: 'ssh',
+            value: state.recore_state.ssh_enabled,
+        })
+        output.push({
+            name: 'Boot from eMMC',
+            type: 'media',
+            value: state.recore_state.boot_media,
+        })
+        return output
+    },
+
     getConfig: (state) => (section: string, attribute: string) => {
         const config = state.config?.config ?? {}
 

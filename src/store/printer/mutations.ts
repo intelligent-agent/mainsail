@@ -62,6 +62,7 @@ export const mutations: MutationTree<PrinterState> = {
     clearScrewsTiltAdjust(state) {
         Vue.set(state.screws_tilt_adjust, 'error', false)
         Vue.set(state.screws_tilt_adjust, 'results', {})
+    },
 
     setRecoreSshEnabled(state, is_enabled){
       Vue.set(state, 'recore_state', {

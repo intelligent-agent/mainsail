@@ -152,16 +152,4 @@ export const actions: ActionTree<PrinterState, RootState> = {
     clearScrewsTiltAdjust({ commit }) {
         commit('clearScrewsTiltAdjust')
     },
-
-    initRecoreState({ commit, dispatch }, payload) {
-        commit('setRecoreState', payload.recore_state)
-        dispatch('socket/removeInitModule', 'printer/recoreState', { root: true })
-    },
-
-    updateRecoreState({ commit, dispatch }, payload) {
-        if (payload.result == 'ok') {
-            if (payload.requestParams.type == 'ssh') commit('setRecoreSshEnabled', payload.requestParams.value)
-            else if (payload.requestParams.type == 'media') commit('setRecoreBootMedia', payload.requestParams.value)
-        }
-    },
 }
